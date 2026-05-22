@@ -1,0 +1,109 @@
+name: vivnet-uhd-ll
+model_type: ImageRestorationModel
+scale: 1
+num_gpu: 2
+manual_seed: 42
+
+datasets:
+  train:
+    name: TrainSet
+    type: PairedImageDataset
+    dataroot_gt: ./datasets/UHD/UHD-LL/training_set/gt
+    dataroot_lq: ./datasets/UHD/UHD-LL/training_set/input
+    filename_tmpl: '{}'
+    io_backend:
+      type: disk
+
+    gt_size: 768
+    use_flip: true
+    use_rot: true
+
+    # data loader
+    use_shuffle: true
+    num_worker_per_gpu: 3
+    batch_size_per_gpu: 3
+    dataset_enlarge_ratio: 1
+    prefetch_mode: ~
+
+  val:
+    name: ValSet
+    type: PairedImageDataset
+    dataroot_gt: ./datasets/UHD/UHD-LL/testing_set/gt
+    dataroot_lq: ./datasets/UHD/UHD-LL/testing_set/input 
+    io_backend:
+      type: disk
+
+
+network_g:
+  type: VIVNet
+  inp_channels: 3
+  out_channels: 3
+  dim: 32
+  num_blocks: [1,1,1]
+  num_refinement_blocks: 4
+  ffn_expansion_factor: 3
+  bias: False
+
+# path
+path:
+  pretrain_network_g:
+  strict_load_g:
+  resume_state: 
+
+# training settings
+train:
+  optim_g:
+    type: AdamW
+    lr: !!float 5e-4
+    weight_decay: !!float 1e-3
+    betas: [0.9, 0.9]
+
+  scheduler:
+    type: TrueCosineAnnealingLR
+    T_max: 100000
+    eta_min: !!float 1e-7
+
+  total_iter: 100000
+  warmup_iter: -1 # no warm up
+
+  # losses
+  pixel_opt:
+    type: L1Loss
+    loss_weight: 1.0
+    reduction: mean
+
+  fft_loss_opt:
+    type: FFTLoss
+    loss_weight: 0.1
+    reduction: mean
+
+# validation settings
+val:
+  val_freq: !!float 1e3
+  save_img: false
+
+
+  metrics:
+    psnr: # metric name, can be arbitrary
+      type: calculate_psnr
+      crop_border: 4
+      test_y_channel: true
+    ssim:
+      type: calculate_ssim
+      crop_border: 4
+      test_y_channel: true
+
+# logging settings
+logger:
+  print_freq: 100
+  save_checkpoint_freq: !!float 1e3
+  use_tb_logger: true
+  wandb:
+    project: ~
+    resume_id: ~
+
+# dist training settings
+dist_params:
+  backend: nccl
+  port: 29500
+

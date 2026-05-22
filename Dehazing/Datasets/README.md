@@ -1,0 +1,61 @@
+For trianing and testing, your directory structure should look like this
+
+`Datasets` <br/>
+     `├──ITS` <br/>
+          `├──train` <br/>
+               `├──gt`  <br/>
+               `└──hazy`  <br/>
+          `└──test` <br/>
+               `├──gt`  <br/>
+               `└──hazy`  <br/>
+     `├──SateHaze1k-Thin` <br/>
+          `├──train` <br/>
+               `├──gt`  <br/>
+               `└──hazy`  <br/>
+          `└──test` <br/>
+               `├──gt`  <br/>
+               `└──hazy`  <br/>
+     `├──SateHaze1k-Moderate` <br/>
+          `├──train` <br/>
+               `├──gt`  <br/>
+               `└──hazy`  <br/>
+          `└──test` <br/>
+               `├──gt`  <br/>
+               `└──hazy`  <br/>
+     `├──SateHaze1k-Thick` <br/>
+          `├──train` <br/>
+               `├──gt`  <br/>
+               `└──hazy`  <br/>
+          `└──test` <br/>
+               `├──gt`  <br/>
+               `└──hazy`  <br/>
+     `├──Haze4k` <br/>
+          `├──train` <br/>
+               `├──gt`  <br/>
+               `└──hazy`  <br/>
+          `└──test` <br/>
+               `├──gt`  <br/>
+               `└──hazy`  <br/>
+     `├──Dense-Haze` <br/>
+          `├──train` <br/>
+               `├──gt`  <br/>
+               `└──hazy`  <br/>
+          `└──test` <br/>
+               `├──gt`  <br/>
+               `└──hazy`  <br/>
+     `├──NH-HAZE` <br/>
+          `├──train` <br/>
+               `├──gt`  <br/>
+               `└──hazy`  <br/>
+          `└──test` <br/>
+               `├──gt`  <br/>
+               `└──hazy`  <br/>
+     `└──RESIDE6K` <br/>
+          `├──train` <br/>
+               `├──gt`  <br/>
+               `└──hazy`  <br/>
+          `└──test` <br/>
+               `├──gt`  <br/>
+               `└──hazy`  <br/>
+
+
