@@ -3,7 +3,7 @@
  2. To train VIVNet on the ITS dataset, run
 ```
 cd VIVNet
-CONFIG=Desnowing/Options/ITS.yml python train_VIVNet.py
+CONFIG=Dehazing/Options/ITS.yml python train_VIVNet.py
  ```
 
 
