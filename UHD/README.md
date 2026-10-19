@@ -3,7 +3,7 @@
  2. To train VIVNet on the UHD-Blur dataset, run
 ```
 cd VIVNet
-CONFIG=Desnowing/Options/UHD-Blur.yml python train_VIVNet.py
+CONFIG=UHD/Options/UHD-Blur.yml python train_VIVNet.py
  ```
 
 
